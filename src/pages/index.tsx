@@ -5,10 +5,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>KRDS - next.js 템플릿</title>
+        <title>DUSTLog</title>
       </Head>
-      <main>
-        <h1>Welcome to KRDS - next.js 템플릿</h1>
+      <main className="h-[calc(100vh-152px)] flex flex-col items-center justify-center">
+        <img src="/images/logo.png" alt="logo" className="w-48" />
+        <p className="mt-3 text-xl font-Medium text-gray70">
+          먼지처럼 소복히 쌓이는 글
+        </p>
+        <h1 className="font-bold text-xxl">DUSTLog</h1>
       </main>
     </>
   );

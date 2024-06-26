@@ -4,7 +4,7 @@ import Header from "./Header";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div id="wrap">
+    <div id="wrap" className="font-Pretendard">
       <Header />
       <div id="container">
         <div className="inner">{children}</div>
