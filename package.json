@@ -2,7 +2,7 @@
   "name": "next-blog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/kimdust/next-blog/",
+  "homepage": "https://kimdust.me/next-blog/",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
