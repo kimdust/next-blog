@@ -1,12 +1,21 @@
 import Link from "next/link";
-import { useAuth } from "@/firebase/auth";
 import { useRouter } from "next/router";
 
-const Header = () => {
-  const { user, loginWithGoogle, logout } = useAuth();
+interface HeaderProps {
+  post: {
+    id: number;
+    title: string;
+    subtitle: string;
+    content: string;
+  };
+}
+
+const Header: React.FC<HeaderProps> = ({ post }) => {
   const router = useRouter();
   const isAboutPage = router.pathname === "/about";
   const isPostPage = router.pathname === "/post";
+  const isAddPostPage = router.pathname === "/addpost";
+  const isPostDetailPage = router.pathname === "/post/[id]";
 
   return (
     <header className="flex items-center h-[100px] px-[150px] text-lg font-bold border-b-2 border-gray20 text-gray90">
@@ -20,7 +29,9 @@ const Header = () => {
           <li className={isAboutPage ? "text-primary60" : ""}>
             <Link href="/about">About</Link>
           </li>
-          <li className={isPostPage ? "text-primary60" : ""}>
+          <li
+            className={`${isPostPage || isAddPostPage || isPostDetailPage ? "text-primary60" : ""}`}
+          >
             <Link href="/post">Post</Link>
           </li>
         </ul>
