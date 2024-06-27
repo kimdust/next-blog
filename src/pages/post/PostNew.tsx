@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { addDocument } from "@/firebase/firestore";
 import Link from "next/link";
-import PostsList from "./PostList";
-
+import gsap from "gsap";
 interface PostAddProps {
   onCancel: () => void;
 }
@@ -12,16 +11,13 @@ const AddPostPage: React.FC<PostAddProps> = ({ onCancel }) => {
   const [subtitle, setsubTitle] = useState("");
   const [content, setContent] = useState("");
 
-  // 폼 제출 시 Firestore에 데이터를 추가하는 함수 호출
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // 입력된 데이터 유효성 검사
     if (title.trim() === "" || content.trim() === "") {
       alert("제목과 내용을 입력하세요!");
       return;
     }
 
-    // Firestore에 문서 추가
     try {
       await addDocument("posts", { title, subtitle, content });
       alert("새 게시물이 추가되었습니다!");
@@ -34,8 +30,20 @@ const AddPostPage: React.FC<PostAddProps> = ({ onCancel }) => {
     }
   };
 
+  const postRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+
+    tl.from(postRef.current, { opacity: 0, y: 50, duration: 1 });
+    tl.play();
+  }, []);
+
   return (
-    <div className="pt-[80px] flex items-center justify-center w-[100%]">
+    <div
+      ref={postRef}
+      className="pt-[80px] flex items-center justify-center w-[100%]"
+    >
       <form onSubmit={handleSubmit} className="w-[100%]">
         <div>
           <input

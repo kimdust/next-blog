@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/firebase/auth";
 import Link from "next/link";
+import gsap from "gsap";
 
 const Login = () => {
   const { user, login, loginWithGoogle, logout } = useAuth();
@@ -20,8 +21,20 @@ const Login = () => {
     }
   };
 
+  const LoginRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+
+    tl.from(LoginRef.current, { opacity: 0, y: 50, duration: 1 });
+    tl.play();
+  }, []);
+
   return (
-    <div className="h-[calc(100vh-152px)] flex flex-col items-center pt-[80px]">
+    <div
+      ref={LoginRef}
+      className="h-[calc(100vh-152px)] flex flex-col items-center pt-[80px]"
+    >
       {user ? (
         <div className="flex flex-col items-center">
           <h2 className="font-bold text-gray90 text-xxl mb-[38px]">로그아웃</h2>

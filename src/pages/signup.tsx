@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/firebase/auth";
+import gsap from "gsap";
 
 const Signup = () => {
   const { register } = useAuth();
@@ -21,8 +22,20 @@ const Signup = () => {
     }
   };
 
+  const SignRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+
+    tl.from(SignRef.current, { opacity: 0, y: 50, duration: 1 });
+    tl.play();
+  }, []);
+
   return (
-    <div className="h-[calc(100vh-152px)] flex flex-col items-center pt-[80px]">
+    <div
+      ref={SignRef}
+      className="h-[calc(100vh-152px)] flex flex-col items-center pt-[80px]"
+    >
       <h2 className="font-bold text-gray90 text-xxl mb-[38px]">회원가입</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleRegister} className="flex flex-col gap-2">

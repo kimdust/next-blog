@@ -1,12 +1,13 @@
 // src/pages/post/[id].tsx
 import { GetStaticProps, GetStaticPaths } from "next";
 import { getPostById, getAllPostIds, Post } from "../../lib/posts";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { db } from "@/firebase/firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { deleteDocument } from "@/firebase/firestore";
 import PostEdit from "./PostEdit";
 import Link from "next/link";
+import gsap from "gsap";
 
 type PostDetailProps = {
   post: Post | null;
@@ -20,7 +21,15 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [editingPostId, setEditingPostId] = useState<string | null>(null);
 
-  // Firestore에서 모든 글을 가져와 상태로 설정
+  const postRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+
+    tl.from(postRef.current, { opacity: 0, y: 50, duration: 1 });
+    tl.play();
+  }, []);
+
   const fetchPosts = async () => {
     const querySnapshot = await getDocs(
       query(collection(db, "posts"), orderBy("title"))
@@ -38,7 +47,6 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
     fetchPosts();
   }, []);
 
-  // 글 삭제
   const handleDelete = async (id: string) => {
     await deleteDocument("posts", id);
     fetchPosts();
@@ -51,14 +59,13 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
     }
   };
 
-  // 글 편집 완료
   const handleUpdate = () => {
     setEditingPostId(null);
-    fetchPosts(); // 업데이트된 목록을 불러옵니다.
+    fetchPosts();
   };
 
   return (
-    <div className="h-[calc(100vh-152px)] px-[460px]">
+    <div ref={postRef} className="h-[calc(100vh-152px)] px-[460px]">
       {editingPostId ? (
         <PostEdit
           id={editingPostId}
