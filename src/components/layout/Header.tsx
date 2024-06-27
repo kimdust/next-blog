@@ -20,7 +20,9 @@ const Header: React.FC<HeaderProps> = ({ post }) => {
   return (
     <header className="flex items-center h-[100px] px-[150px] text-lg font-bold border-b-2 border-gray20 text-gray90">
       <h1 className="flex items-center gap-4 w-[33%]">
-        <img src="/images/logo.png" alt="logo" className="w-8 h-8" />
+        <div className="bg-primary60 w-[50px] h-[50px] flex items-center justify-center font-bold text-xxl rounded-lg text-gray0">
+          D
+        </div>
         <Link href="/">DustLog</Link>
       </h1>
 

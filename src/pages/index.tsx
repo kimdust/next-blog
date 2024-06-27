@@ -41,12 +41,13 @@ export default function Home() {
         ref={mainRef}
         className="h-[calc(100vh-152px)] flex flex-col items-center justify-center"
       >
-        <img
-          ref={imageRef}
-          src="/images/logo.png"
-          alt="logo"
-          className="w-48"
-        />
+        <div
+          // ref={imageRef}
+          className="bg-primary60 w-[160px] h-[160px] flex items-center justify-center font-bold text-[120px] rounded-3xl text-gray0"
+        >
+          D
+        </div>
+
         <p ref={textRef} className="mt-3 text-xl font-Medium text-gray70">
           먼지처럼 소복히 쌓이는 글
         </p>
