@@ -2,11 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { addDocument } from "@/firebase/firestore";
 import Link from "next/link";
 import gsap from "gsap";
-interface PostAddProps {
-  onCancel: () => void;
-}
 
-const AddPostPage: React.FC<PostAddProps> = ({ onCancel }) => {
+const AddPostPage: React.FC = () => {
   const [title, setTitle] = useState("");
   const [subtitle, setsubTitle] = useState("");
   const [content, setContent] = useState("");
