@@ -3,7 +3,6 @@ import Head from "next/head";
 import gsap from "gsap";
 
 export default function Home() {
-  // useRef를 사용하여 DOM 요소에 접근합니다
   const mainRef = useRef(null);
   const imageRef = useRef(null);
   const textRef = useRef(null);
@@ -42,7 +41,7 @@ export default function Home() {
         className="h-[calc(100vh-152px)] flex flex-col items-center justify-center"
       >
         <div
-          // ref={imageRef}
+          ref={imageRef}
           className="bg-primary60 w-[160px] h-[160px] flex items-center justify-center font-bold text-[120px] rounded-3xl text-gray0"
         >
           D

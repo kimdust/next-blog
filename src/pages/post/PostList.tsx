@@ -33,10 +33,9 @@ const PostsList: React.FC = () => {
     fetchPosts();
   }, []);
 
-  // 글 편집 완료
   const handleUpdate = () => {
     setEditingPostId(null);
-    fetchPosts(); // 업데이트된 목록을 불러옵니다.
+    fetchPosts();
   };
 
   return (
@@ -70,7 +69,7 @@ const PostsList: React.FC = () => {
                     <h3 className="text-xl font-bold text-gray90">
                       {post.title}
                     </h3>
-                    <p className="block overflow-hidden whitespace-nowrap text-ellipsis text-md text-gray70 mt-[20px]">
+                    <p className="block overflow-hidden whitespace-wrap text-ellipsis text-md text-gray70 mt-[20px]">
                       {post.content}
                     </p>
                   </Link>
