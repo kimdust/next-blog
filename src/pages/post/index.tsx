@@ -36,7 +36,7 @@ const PostsPage: React.FC = () => {
       <div ref={listRef}>
         <PostsList />
       </div>
-      <div ref={modalRef}>
+      {/* <div ref={modalRef}>
         {isModalOpen && (
           <div className="text-center bg-gray0 w-[43%] rounded-md py-[38px] text-gray90 absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] shadow-xl">
             <p>
@@ -71,7 +71,7 @@ const PostsPage: React.FC = () => {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
